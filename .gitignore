@@ -27,3 +27,8 @@ dependency-reduced-pom.xml
 # HPC shell scrips
 run_matsim_random_HPC.sh
 run_matsim_RL_HPC.sh
+# Mirrored upstream scenario inputs (downloaded, not source)
+scenarios/*/input/raw/
+
+# Local python environment for the within-day bridge
+.venv/
