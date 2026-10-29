@@ -32,3 +32,6 @@ scenarios/*/input/raw/
 
 # Local python environment for the within-day bridge
 .venv/
+
+# Geotools feature-id index, written next to a shapefile when it is read
+*.fix
