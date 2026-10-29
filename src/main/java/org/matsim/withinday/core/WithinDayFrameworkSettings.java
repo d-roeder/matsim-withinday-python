@@ -66,7 +66,11 @@ public final class WithinDayFrameworkSettings {
      * @param config The configuration to modify.
      */
     public static void applyOutputSettings(Config config) {
-        config.controller().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
+        // Not deleteDirectoryIfExists: in the containerized layout the output directory is the bind
+        // mount itself, and MATSim's recursive delete ends by removing that directory, which fails
+        // with "Device or resource busy". Stale files from an earlier, longer run are left behind
+        // instead; the launcher scripts empty the directory themselves.
+        config.controller().setOverwriteFileSetting(OverwriteFileSetting.overwriteExistingFiles);
         config.controller().setWriteSnapshotsInterval(0);
         config.controller().setDumpDataAtEnd(false);
     }

@@ -18,6 +18,7 @@ import org.matsim.core.config.groups.ReplanningConfigGroup;
 import org.matsim.core.config.groups.RoutingConfigGroup;
 import org.matsim.core.config.groups.ScoringConfigGroup;
 import org.matsim.core.config.groups.VspExperimentalConfigGroup;
+import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule;
 import org.matsim.simwrapper.SimWrapperConfigGroup;
 import org.matsim.withinday.utils.WithinDayConfigGroup;
@@ -76,6 +77,11 @@ public class RunBerlinModeChoiceConfigTest {
                 config.vspExperimental().getVspDefaultsCheckingLevel());
         assertEquals(SimWrapperConfigGroup.DefaultDashboardsMode.disabled,
                 ConfigUtils.addOrGetModule(config, SimWrapperConfigGroup.class).getDefaultDashboards());
+
+        // deleteDirectoryIfExists would try to remove the output directory itself, which is the
+        // bind mount in the containerized layout and fails there with "Device or resource busy".
+        assertEquals(OutputDirectoryHierarchy.OverwriteFileSetting.overwriteExistingFiles,
+                config.controller().getOverwriteFileSetting());
     }
 
     @Test
