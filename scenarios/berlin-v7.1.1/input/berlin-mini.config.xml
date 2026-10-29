@@ -232,6 +232,9 @@
 	</module>
 
 	<module name="withinday">
+		<!-- Hyperparameters of the RL flavour, resolved next to this file; also the name the trained
+		     model is written under in the output directory. Ignored by the random baseline. -->
+		<param name="externalModelFileName" value="berlin-mini.modeChoiceModel.xml"/>
 		<param name="trainAgentIDList" value="bb_00007dd9"/>
 		<param name="dataset" value="train"/>
 		<param name="agentsPerIteration" value="1"/>
