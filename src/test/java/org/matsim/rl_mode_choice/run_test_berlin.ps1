@@ -14,7 +14,7 @@ $PARAMS = "alpha=0.367435 gamma=0.892101 epsilon_minimum=0.001044 epsilon_decay=
 
 # Development Pipeline Toggles
 $NUM_AGENTS_PER_ITERATION = "1"
-$UPDATE_JAR = $true
+$UPDATE_JAR = $false
 $REBUILT_DOCKER = $true
 
 # Base Windows workspace directory 
@@ -50,10 +50,10 @@ Write-Host "=========================================" -ForegroundColor Cyan
 if (!(Test-Path $SHARED_STORAGE_DIR)) { New-Item -ItemType Directory -Path $SHARED_STORAGE_DIR | Out-Null }
 if (!(Test-Path $SCENARIO_OUTPUT_DIR)) { New-Item -ItemType Directory -Path $SCENARIO_OUTPUT_DIR | Out-Null }
 
-# 2. Move execution context to base workspace
+# 1. Move execution context to base workspace
 Set-Location $BASE_WORKSPACE
 
-# 3. Clean old build artifacts safely
+# 2. Clean old build artifacts safely
 Write-Host "Cleaning old build artifacts..." -ForegroundColor Yellow
 Remove-Item -Path $JAR_FILE -Force -ErrorAction SilentlyContinue
 
