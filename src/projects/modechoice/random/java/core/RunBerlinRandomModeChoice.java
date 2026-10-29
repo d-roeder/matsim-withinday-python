@@ -5,6 +5,7 @@ import java.util.List;
 import org.matsim.application.MATSimApplication;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.run.OpenBerlinScenario;
 import org.matsim.simwrapper.SimWrapperConfigGroup;
@@ -72,7 +73,7 @@ public class RunBerlinRandomModeChoice extends OpenBerlinScenario {
      * @param config The loaded configuration.
      * @return The module holding the within-day bindings.
      */
-    protected WithinDayModule createWithinDayModule(Config config) {
+    protected AbstractModule createWithinDayModule(Config config) {
         // Berlin brings its own scoring function factory, so SplitAwareScoringFunctionFactory stays off.
         return new WithinDayModule(config, RandomModeChoiceReplanner.class, RandomModeChoiceObserver.class, false);
     }
